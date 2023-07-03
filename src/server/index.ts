@@ -7,6 +7,7 @@ import { connect } from "mongoose";
 import { AlunosController } from "./alunos/alunos.controller";
 import { ProfessoresController } from "./professores/professores.controller";
 import { DiretoresController } from "./diretores/diretores.controller";
+import { AuthController } from "./auth/auth.controller";
 
 useContainer(Container);
 
@@ -17,6 +18,7 @@ const controllers = [
   AlunosController,
   DiretoresController,
   ProfessoresController,
+  AuthController,
 ];
 
 createExpressServer({
