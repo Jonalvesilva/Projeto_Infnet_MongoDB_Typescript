@@ -7,13 +7,13 @@ const jwtSecret = process.env.JWT_SECRET as string;
 export class JwtService {
   constructor() {}
 
-  verify(token: string) {
+  verify(token: string): jwt.JwtPayload | null {
     const payload = jwt.verify(token, jwtSecret);
-    return payload;
+    return payload as any;
   }
   sign(payload: any) {
     const token = jwt.sign(payload, jwtSecret, {
-      expiresIn: "1h",
+      expiresIn: "30d",
     });
     return token;
   }

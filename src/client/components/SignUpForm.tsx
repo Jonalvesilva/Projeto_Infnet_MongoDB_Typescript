@@ -3,14 +3,14 @@ import { LinkButton } from "./LinkButton";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-simple-toasts";
-import { signIn } from "../utils/signIn";
+import { signUp } from "../utils/signUp";
 import "react-simple-toasts/dist/theme/dark.css";
 import { Toast } from "./Toast";
 import { useGlobalStore } from "../useGlobalStore";
 import { FiLoader } from "react-icons/fi";
 import { AuthToken } from "../utils/authToken";
 
-export function SignInForm() {
+export function SignUpForm() {
   const navigate = useNavigate();
   const isLoading = useGlobalStore((state) => state.isLoading);
   const isAuthenticated = useGlobalStore((state) => state.isAuthenticated);
@@ -20,6 +20,8 @@ export function SignInForm() {
   );
   const setFuncionario = useGlobalStore((state) => state.setFuncionario);
 
+  const [nome, setNome] = useState("");
+  const [sobrenome, setSobrenome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
@@ -31,13 +33,15 @@ export function SignInForm() {
 
   async function onFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const response = await signUp({ nome, sobrenome, email, senha });
     setIsLoading(true);
-    const response = await signIn(email, senha);
+
     if (response.success) {
-      AuthToken.set(response.token);
+      AuthToken.set(response.jwt);
+      setIsLoading(false);
       setIsAuthenticated(true);
       setFuncionario(response.funcionario);
-      toast("Login efetuado com sucesso", {
+      toast("Conta criada com sucesso", {
         render: (message) => (
           <Toast
             className="bg-green-800 p-4 text-white text-lg md:text-xl rounded-full"
@@ -52,22 +56,50 @@ export function SignInForm() {
   return (
     <div
       className="w-full h-full md:h-[850px] absolute bg-[#043964] 
-    md:bg-[linear-gradient(to_right_bottom,rgba(00,00,00,0.7),rgba(00,00,00,0.7)),url('signin.jpg')]
+    md:bg-[linear-gradient(to_right_bottom,rgba(00,00,00,0.75),rgba(00,00,00,0.75)),url('signup.jpg')]
     bg-no-repeat bg-cover"
     >
-      <div className="bg-white w-[90%] mx-auto mt-[200px] p-2 rounded-xl md:max-w-screen-md">
-        <h2 className="text-xl font-bold text-center mb-6 mt-2">
-          Área de Funcionários - Entrar
-        </h2>
+      <div className="bg-white w-[90%] mx-auto mt-[150px] p-2 rounded-xl md:max-w-screen-md">
+        <div className="flex flex-row justify-center items-center">
+          <div className="w-full">
+            <h2 className="text-xl font-bold text-center ml-12 mb-6 mt-2">
+              Criar sua conta
+            </h2>
+          </div>
+          <div className=" mb-5 mt-2">
+            <LinkButton
+              to="/"
+              className="text-blue-600 hover:text-blue-400 text-lg font-bold mr-2 underline"
+            >
+              Voltar
+            </LinkButton>
+          </div>
+        </div>
         <form
           method="POST"
           className="flex flex-col gap-2 w-[95%] mx-auto"
           noValidate
           onSubmit={onFormSubmit}
         >
-          <label className="text-lg md:text-xl">Email:</label>
+          <label className="text-lg md:text-xl">Nome:</label>
           <TextField
             placeholder="Digite seu email"
+            className="mb-3 border-gray-200 border-2 text-lg p-2 rounded-xl outline-none md:text-xl"
+            value={nome}
+            onChange={setNome}
+          />
+
+          <label className="text-lg md:text-xl">Sobrenome:</label>
+          <TextField
+            placeholder="Digite seu nome"
+            className="mb-3 border-gray-200 border-2 text-lg p-2 rounded-xl outline-none md:text-xl"
+            value={sobrenome}
+            onChange={setSobrenome}
+          />
+
+          <label className="text-lg md:text-xl">Email:</label>
+          <TextField
+            placeholder="Digite seu sobrenome"
             className="mb-3 border-gray-200 border-2 text-lg p-2 rounded-xl outline-none md:text-xl"
             value={email}
             onChange={setEmail}
@@ -87,18 +119,10 @@ export function SignInForm() {
             {isLoading ? (
               <FiLoader className="text-white animate-spin text-lg inline" />
             ) : (
-              `Entrar`
+              `Cadastrar`
             )}
           </button>
         </form>
-        <div className="text-center mb-2">
-          <LinkButton
-            to="/cadastro"
-            className="text-blue-600 hover:text-blue-400 text-lg text-center md:text-xl underline"
-          >
-            Não possui cadastro? Cadastre-se aqui!
-          </LinkButton>
-        </div>
       </div>
     </div>
   );

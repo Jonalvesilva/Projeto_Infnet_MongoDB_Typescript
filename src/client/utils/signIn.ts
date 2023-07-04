@@ -4,12 +4,12 @@ import { Funcionario } from "../../shared/types";
 type SignInOutput =
   | {
       success: false;
-      jwt: null;
+      token: null;
       funcionario: null;
     }
   | {
       success: true;
-      jwt: string;
+      token: string;
       funcionario: Funcionario;
     };
 

@@ -1,6 +1,7 @@
 import { Service } from "typedi";
 import { FuncionariosRepository } from "./funcionarios.repository";
 import { SignInDto } from "../auth/dtos/sign-in.dto";
+import { SignUpDto } from "../auth/dtos/sign-up.dto";
 
 @Service()
 export class FuncionarioService {
@@ -18,7 +19,8 @@ export class FuncionarioService {
     const funcionario = await this.funcionariosRepository.findByEmail(email);
     return funcionario;
   }
-  create() {
-    //const funcionario = await this.funcionariosRepository.create()
+  async create(signUpDto: SignUpDto) {
+    const funcionario = await this.funcionariosRepository.create(signUpDto);
+    return funcionario;
   }
 }
