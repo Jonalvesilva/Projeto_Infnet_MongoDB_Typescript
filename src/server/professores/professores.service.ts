@@ -9,6 +9,9 @@ export class ProfessoresService {
 
   async getAll() {
     const professores = await this.professoresRepository.getAll();
+    professores.map((element) => {
+      element.hashId = element._id.toHexString();
+    });
     return professores;
   }
 

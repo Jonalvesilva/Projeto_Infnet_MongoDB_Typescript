@@ -5,6 +5,7 @@ export interface IDiretor {
   sobrenome: string;
   data_nasc: Date;
   area: string;
+  hashId?: string;
 }
 
 export const diretorSchema = new Schema<IDiretor>({
@@ -28,5 +29,7 @@ export const diretorSchema = new Schema<IDiretor>({
     required: true,
     type: Schema.Types.String,
   },
+
+  hashId: { type: Schema.Types.String },
 });
 export const Diretor = model<IDiretor>("Diretor", diretorSchema);

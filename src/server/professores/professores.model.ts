@@ -5,6 +5,7 @@ export interface IProfessor {
   sobrenome: string;
   data_nasc: Date;
   area: string;
+  hashId?: string;
 }
 
 export const professorSchema = new Schema<IProfessor>({
@@ -28,5 +29,6 @@ export const professorSchema = new Schema<IProfessor>({
     required: true,
     type: Schema.Types.String,
   },
+  hashId: { type: Schema.Types.String },
 });
 export const Professor = model<IProfessor>("Professor", professorSchema);

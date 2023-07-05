@@ -9,6 +9,9 @@ export class DiretoresRepository {
 
   async getAll() {
     const diretores = await Diretor.find().lean();
+    diretores.map((element) => {
+      element.hashId = element._id.toHexString();
+    });
     return diretores;
   }
   async getById(id: string) {

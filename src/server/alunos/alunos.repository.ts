@@ -9,6 +9,9 @@ export class AlunosRepository {
 
   async getAll() {
     const alunos = await Aluno.find().lean();
+    alunos.map((element) => {
+      element.hashId = element._id.toHexString();
+    });
     return alunos;
   }
   async getById(id: string) {

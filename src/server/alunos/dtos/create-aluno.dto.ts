@@ -1,5 +1,6 @@
 import { MinLength, MaxLength } from "class-validator";
 import { IAluno } from "../alunos.model";
+import { Schema } from "mongoose";
 
 export class CreateAlunoDto implements IAluno {
   @MinLength(3)

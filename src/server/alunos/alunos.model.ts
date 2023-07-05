@@ -5,6 +5,7 @@ export interface IAluno {
   sobrenome: string;
   data_nasc: Date;
   turma: string;
+  hashId?: string;
 }
 
 export const alunoSchema = new Schema<IAluno>({
@@ -28,5 +29,7 @@ export const alunoSchema = new Schema<IAluno>({
     required: true,
     type: Schema.Types.String,
   },
+  hashId: { type: Schema.Types.String },
 });
+
 export const Aluno = model<IAluno>("Aluno", alunoSchema);
