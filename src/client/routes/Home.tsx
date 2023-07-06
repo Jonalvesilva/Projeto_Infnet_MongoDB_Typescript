@@ -27,7 +27,7 @@ export function Home() {
         />
         <HomeCard
           title="Diretores"
-          subtitle="Por meio do estudo você encontrará tudo que precisa para conquistar seus sonhos."
+          subtitle="O homem nasceu para aprender tanto quanto a vida lhe permita."
           img="diretor.jpg"
           buttonTitle="Gerenciar diretores"
           linkTo="/diretores"

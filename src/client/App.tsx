@@ -17,6 +17,10 @@ import { ProfessoresCardList } from "./routes/professores/ProfessoresCardList";
 import { ProfessorProfile } from "./routes/professores/ProfessorProfile";
 import { CreateProfessor } from "./routes/professores/CreateProfessor";
 import { EditProfessor } from "./routes/professores/EditProfessor";
+import { DiretoresCardList } from "./routes/diretores/DiretoresCardList";
+import { DiretorProfile } from "./routes/diretores/DiretorProfile";
+import { CreateDiretor } from "./routes/diretores/CreateDiretor";
+import { EditDiretor } from "./routes/diretores/EditDiretor";
 
 export function App() {
   return (
@@ -35,6 +39,10 @@ export function App() {
         <Route path="/professores/:id" element={<ProfessorProfile />} />
         <Route path="/professores/create" element={<CreateProfessor />} />
         <Route path="/professores/editar/:id" element={<EditProfessor />} />
+        <Route path="/diretores" element={<DiretoresCardList />} />
+        <Route path="/diretores/:id" element={<DiretorProfile />} />
+        <Route path="/diretores/create" element={<CreateDiretor />} />
+        <Route path="/diretores/editar/:id" element={<EditDiretor />} />
       </Routes>
     </HistoryRouter>
   );
