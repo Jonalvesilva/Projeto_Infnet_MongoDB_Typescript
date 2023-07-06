@@ -6,6 +6,7 @@ export type TextFieldProps = {
   placeholder: string;
   name?: string;
   defaultValue?: string;
+  required?: boolean;
 };
 
 export function TextField({
@@ -15,6 +16,7 @@ export function TextField({
   name,
   onChange,
   defaultValue,
+  required,
 }: TextFieldProps) {
   return (
     <input
@@ -24,6 +26,7 @@ export function TextField({
       className={className}
       name={name}
       defaultValue={defaultValue}
+      required
       type="text"
     />
   );

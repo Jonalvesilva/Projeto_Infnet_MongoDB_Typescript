@@ -10,6 +10,9 @@ import { SignUp } from "./routes/login/SignUp";
 import { AuthChecker } from "./components/AuthChecker";
 import { Home } from "./routes/Home";
 import { AlunosCardList } from "./routes/alunos/AlunosCardList";
+import { AlunosProfile } from "./routes/alunos/AlunoProfile";
+import { CreateAluno } from "./routes/alunos/CreateAluno";
+import { EditAluno } from "./routes/alunos/EditAluno";
 
 export function App() {
   return (
@@ -21,6 +24,9 @@ export function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/cadastro" element={<SignUp />} />
         <Route path="/alunos" element={<AlunosCardList />} />
+        <Route path="/alunos/:id" element={<AlunosProfile />} />
+        <Route path="/alunos/create" element={<CreateAluno />} />
+        <Route path="/alunos/editar/:id" element={<EditAluno />} />
       </Routes>
     </HistoryRouter>
   );

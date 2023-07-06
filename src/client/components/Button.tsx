@@ -1,7 +1,7 @@
 type tipo = {
   className: string;
   children: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export function Button(props: tipo) {
