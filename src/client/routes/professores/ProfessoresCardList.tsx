@@ -1,17 +1,17 @@
 import { ResponsiveCardList } from "../../components/ResponsiveCardList";
 import { useState, useEffect } from "react";
-import { getAlunos } from "../../utils/alunos/getAlunos";
+import { getProfessores } from "../../utils/professores/getProfessores";
 import { Generic } from "../../../shared/types";
 import { LinkButton } from "../../components/LinkButton";
 
 const initial = {
-  aluno: [] as Generic[],
+  professor: [] as Generic[],
 };
 
-export function AlunosCardList() {
-  const [obj, setObject] = useState(initial.aluno);
+export function ProfessoresCardList() {
+  const [obj, setObject] = useState(initial.professor);
   useEffect(() => {
-    getAlunos().then((data) => {
+    getProfessores().then((data) => {
       data.map((element: Generic) => {
         return element;
       });
@@ -27,20 +27,20 @@ export function AlunosCardList() {
           </LinkButton>
         </div>
         <div className="text-center pb-12">
-          <h2 className="text-2xl font-bold text-cyan-600">Alunos</h2>
+          <h2 className="text-2xl font-bold text-cyan-600">Professores</h2>
           <div className="flex items-center justify-between mt-2">
             <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl font-heading text-white">
-              Time de alunos
+              Time de Professores
             </h1>
             <LinkButton
-              to={`/alunos/create`}
+              to={`/professores/create`}
               className="bg-green-700 py-3 px-6 text-lg text-white rounded-full"
             >
-              Cadastrar Aluno
+              Cadastrar Professor
             </LinkButton>
           </div>
         </div>
-        <ResponsiveCardList generic={obj} link="/alunos/" />
+        <ResponsiveCardList generic={obj} link="/professores/" />
       </section>
     </div>
   );

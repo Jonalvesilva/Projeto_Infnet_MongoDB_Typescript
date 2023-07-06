@@ -3,6 +3,7 @@ import type { Generic } from "../../shared/types";
 
 type props = {
   generic: Generic[];
+  link?: string;
 };
 
 export function ResponsiveCardList(props: props) {
@@ -35,7 +36,7 @@ export function ResponsiveCardList(props: props) {
               </p>
             </div>
             <LinkButton
-              to={`/alunos/${element.hashId}`}
+              to={`${props.link}${element.hashId}`}
               className="bg-blue-600 mt-6 py-3 px-6 text-lg text-white rounded-full"
             >
               Ver Perfil
